@@ -1,0 +1,112 @@
+#
+# e@sy Solutions IT - Development Environment
+# ===========================================
+#
+version: '2'
+
+services:
+    mariadb:
+        container_name: "dev_mariadb"
+        image: mariadb:10.1
+        ports: ["3306:3306"]
+        volumes: ["/mnt/easy.Projekte/mariadb:/var/lib/mysql", "/var/log/mysql", "/mnt/easy.Projekte/tmp:/mnt/easy.Projekte/tmp"]
+        env_file:
+            - ".secret.env"
+        networks:
+            esit_net:
+                ipv4_address: 172.0.1.102
+
+    php56:
+        container_name: "dev_php56"
+        image: dev_php56:1.0.0
+        build:
+            context: "php/"
+            dockerfile: Dockerfile56
+            args:
+                - APACHE_RUN_USER=1000
+                - APACHE_RUN_GROUP=1000
+        ports: ["8056:8056"]
+        volumes: ["/mnt/easy.Projekte:/mnt/easy.Projekte"]
+        depends_on:
+            - mariadb
+        networks:
+            esit_net:
+                ipv4_address: 172.0.1.156
+
+    php70:
+        container_name: "dev_php70"
+        image: dev_php70:1.0.0
+        build:
+            context: "php/"
+            dockerfile: Dockerfile70
+            args:
+                - APACHE_RUN_USER=1000
+                - APACHE_RUN_GROUP=1000
+        ports: ["8070:8070"]
+        volumes: ["/mnt/easy.Projekte:/mnt/easy.Projekte"]
+        depends_on:
+            - mariadb
+        networks:
+            esit_net:
+                ipv4_address: 172.0.1.170
+
+    php71:
+        container_name: "dev_php71"
+        image: dev_php71:1.0.0
+        build:
+            context: "php/"
+            dockerfile: Dockerfile71
+            args:
+                - APACHE_RUN_USER=1000
+                - APACHE_RUN_GROUP=1000
+        ports: ["8071:8071"]
+        volumes: ["/mnt/easy.Projekte:/mnt/easy.Projekte"]
+        depends_on:
+            - mariadb
+        networks:
+            esit_net:
+                ipv4_address: 172.0.1.171
+
+    php72:
+        container_name: "dev_php72"
+        image: dev_php72:1.0.0
+        build:
+            context: "php/"
+            dockerfile: Dockerfile72
+            args:
+                - APACHE_RUN_USER=1000
+                - APACHE_RUN_GROUP=1000
+        ports: ["8072:8072"]
+        volumes: ["/mnt/easy.Projekte:/mnt/easy.Projekte"]
+        depends_on:
+            - mariadb
+        networks:
+            esit_net:
+                ipv4_address: 172.0.1.172
+
+    php73:
+        container_name: "dev_php73"
+        image: dev_php73:1.0.0
+        build:
+            context: "php/"
+            dockerfile: Dockerfile73
+            args:
+                - APACHE_RUN_USER=1000
+                - APACHE_RUN_GROUP=1000
+        ports: ["8073:8073"]
+        volumes: ["/mnt/easy.Projekte:/mnt/easy.Projekte"]
+        depends_on:
+            - mariadb
+        networks:
+            esit_net:
+                ipv4_address: 172.0.1.173
+
+networks:
+    esit_net:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.0.1.0/24
+                  ip_range: 172.0.1.0/24
+                  gateway: 172.0.1.254

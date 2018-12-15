@@ -6,7 +6,7 @@ Ich habe mir einige andere Lösungen angesehen und bin zu dem Schluß gekommen, 
 
 ## Die Lösung
 
-Für mich bestand die Lösung darin, die original [PHP-Images](https://hub.docker.com/_/php) für Docker zu nutzen und an meine Bedürfnisse anzupassen. Ich nutze die Images in der *`-apache`-Version. Die größte Herausforderung war das Installieren der PHP-Erweiterungen. Dies hat mich einige Zeit und Tüftelei bekostet. Aber der Reihe nach.
+Für mich bestand die Lösung darin, die original [PHP-Images](https://hub.docker.com/_/php) für Docker zu nutzen und an meine Bedürfnisse anzupassen. Ich nutze die Images in der *`-apache`-Version. Die größte Herausforderung war das Installieren der PHP-Erweiterungen. Dies hat mich einige Zeit und Tüftelei gekostet. Aber der Reihe nach.
 
 ## Grundüberlegungen
 
@@ -36,7 +36,7 @@ In den Konfigurationsdateien für den Apache sehe es dann ungefähr so aus:
 VirtualDocumentRoot /mnt/easy.Projekte/%1/%2/%3/vhosts/%4/htdocs/web
 ```
 
-Die Projekte lieg bei mir unter `/mnt/easy.Projekt/` und werden auch so in den Container eingebungen. Der Rest gibt die Verzeichnisstruktur wieder. Ich gehe später noch näher auf die Konfiguration ein.
+Die Projekte liegen bei mir unter `/mnt/easy.Projekt/` und werden auch so in den Container eingebunden. Der Rest gibt die Verzeichnisstruktur wieder. Ich gehe später noch näher auf die Konfiguration ein.
 
 
 ## Dateiliste
@@ -65,7 +65,7 @@ Wichtig ist hier die Variablen `APACHE_RUN_USER` und `APACHE_RUN_GROUP` zu setze
 
 ## Dockerfiles
 
-Es gibt für jede PHP-Version ein Dockerfile mit den Anweisungen, wie das Image erstellt weden soll. Dies liegt vor allem an den verschiedene PHP-Erweiterugnen, bzw. daran wie diese genau installiert werden. Ich zeige hier wieder exemplarisch das Dockerfile der Version 7.2.
+Es gibt für jede PHP-Version ein Dockerfile mit den Anweisungen, wie das Image erstellt werden soll. Dies liegt vor allem an den verschiedene PHP-Erweiterugnen, bzw. daran wie diese genau installiert werden. Ich zeige hier wieder exemplarisch das Dockerfile der Version 7.2.
 
 <script src="https://gist.github.com/eS-IT/f7bf2bc3712a8828b49ae5181dbedfac.js"></script>
 

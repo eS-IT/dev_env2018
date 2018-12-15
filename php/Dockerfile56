@@ -101,6 +101,11 @@ RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 COPY etc/php-56.ini $PHP_INI_DIR/conf.d/
 
 ##
+## Apache-Konfiguration einbinden
+##
+COPY sites-enabled/8056-default.conf /etc/apache2/sites-available/000-default.conf
+
+##
 ## Enable vhosts
 ##
 RUN a2enmod vhost_alias
@@ -109,11 +114,6 @@ RUN a2enmod vhost_alias
 ## Enable mod_rewrite
 ##
 RUN a2enmod rewrite
-
-##
-## Apache-Konfiguration einbinden
-##
-COPY sites-enabled/8056-default.conf /etc/apache2/sites-available/000-default.conf
 
 ##
 ## Apache neu starten
